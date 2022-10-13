@@ -9,9 +9,34 @@
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.gcode\\'" . gcode-mode))
 
+(defface gcode-g-command-face
+  `((t (:foreground "#4f97d7")))
+  "Face for Gnnn commands.")
+(defvar gcode-g-command-face 'gcode-g-command-face
+  "Variable for G command face")
+
+(defface gcode-m-command-face
+  `((t (:foreground "#b1951d")))
+  "Face for Mnnn commands.")
+(defvar gcode-m-command-face 'gcode-m-command-face
+  "Variable for M command face")
+
+(defface gcode-arg-command-face
+  `((t (:inherit font-lock-constant-face
+                 :weight bold
+                 :slant italic
+                 :height 0.9)))
+  "Face for arguments to a command, such as X2 in G1 X2")
+(defvar gcode-arg-command-face 'gcode-arg-command-face
+  "Variable for command arg face")
+
 (defconst gcode-font-lock-keywords
   (list
-   '("^\\w*\\([A-Z][0-9]+\\)\\>" . font-lock-builtin-face))
+   '("\s+\\([A-Z]\\)" . gcode-arg-command-face)
+   '("^\\(M[0-9]+\\)\\>" . gcode-m-command-face)
+   '("^\\(G[0-9]+\\)\\>" . gcode-g-command-face)
+   '("^\\([A-FH-LN-Z][0-9]+\\)\\>" . font-lock-keyword-face)
+   )
   "Minimal highlighting expressiong for GCODE mode")
 
 (defvar gcode-mode-syntax-table
