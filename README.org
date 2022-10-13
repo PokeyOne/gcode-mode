@@ -9,8 +9,27 @@ Currently the only feature is syntax highlighting.
 
 ** Syntax Highlighting
 
-+ Instruction codes.
++ Instruction codes
++ Arguments
 + Comments
 
 #+CAPTION: Example syntax highlighting
 [[./docs/images/readme/example.png]]
+
+* Installation
+
+This package is only available through loading the source. To install:
+
+First, either clone this repo or download the ~gcode-mode.el~ file. Make note
+of the location of this file.
+
+Now in your emacs config, add something like this:
+#+begin_src elisp
+  (push "~/repos/gcode-mode" load-path)
+  (require 'gcode-mode)
+#+end_src
+
+In Spacemacs, this would be in the ~dotspacemacs/user-config~ function.
+
+Now, if you reload emacs, and open a ~.gcode~ file, it should open in gcode mode
+and have syntax highlighting.

@@ -16,7 +16,7 @@
   "Variable for G command face")
 
 (defface gcode-m-command-face
-  `((t (:foreground "#b1951d")))
+  `((t (:foreground "#67b11d")))
   "Face for Mnnn commands.")
 (defvar gcode-m-command-face 'gcode-m-command-face
   "Variable for M command face")
@@ -25,14 +25,25 @@
   `((t (:inherit font-lock-constant-face
                  :weight bold
                  :slant italic
-                 :height 0.9)))
+                 :height 0.9
+                 :foreground "#b1951d")))
   "Face for arguments to a command, such as X2 in G1 X2")
 (defvar gcode-arg-command-face 'gcode-arg-command-face
   "Variable for command arg face")
 
+(defface gcode-xyz-arg-command-face
+  `((t (:inherit font-lock-constant-face
+                 :weight bold
+                 :slant italic
+                 :height 0.9)))
+  "Face for arguments to a command, such as X2 in G1 X2")
+(defvar gcode-xyz-arg-command-face 'gcode-xyz-arg-command-face
+  "Variable for command XYZ arg face")
+
 (defconst gcode-font-lock-keywords
   (list
-   '("\s+\\([A-Z]\\)" . gcode-arg-command-face)
+   '("\s+\\([A-W]\\)" . gcode-arg-command-face)
+   '("\s+\\([X-Z]\\)" . gcode-xyz-arg-command-face)
    '("^\\(M[0-9]+\\)\\>" . gcode-m-command-face)
    '("^\\(G[0-9]+\\)\\>" . gcode-g-command-face)
    '("^\\([A-FH-LN-Z][0-9]+\\)\\>" . font-lock-keyword-face)
